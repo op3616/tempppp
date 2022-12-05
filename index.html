@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -18,10 +18,10 @@
         <div class="calculator">
             <div class="calculator-input">
                 <label for="">Khoản vay (VND):</label>
-                <input type="number" id="loan_amount" required>
+                <input type="text" id="loan_amount" required>
             </div>
             <div class="calculator-input">
-                <label for="">Thời gian vay (Năm):</label>
+                <label for="">Thời gian vay (Tháng):</label>
                 <input type="number" id="loan_tenure" required>
             </div>
             <div class="calculator-input">
@@ -34,42 +34,12 @@
         </div>
 
         <div class="calculator-result">
-            <!---Canvas-->
-            <!-- <canvas id="loanChart"></canvas> -->
             <ul>
-                <li>Tổng tiền trả hàng tháng: <span class="loan_emi"></span></li>
+                <li>Tiền trả hàng tháng: <span class="loan_emi"></span></li>
                 <li>Tổng gốc: <span class="loan_principle"></span></li>
                 <li>Tổng lãi: <span class="loan_interest_rate"></span></li>
                 <li>Tổng tiền lãi và gốc: <span class="loan_total"></span></li>
             </ul>
-
-            <!-- <div class="emi-table"> -->
-                <!-- <table class="container">
-                    <thead>
-                      <tr>
-                        <th>Tháng</th>
-                        <th>Gốc còn lại</th>
-                        <th>Lãi</th>
-                        <th>Gốc + Lãi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>9518</td>
-                        <td>6369</td>
-                        <td>01:32:50</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>7326</td>
-                        <td>10437</td>
-                        <td>00:51:22</td>
-                      </tr>
-
-                    </tbody>
-                  </table> -->
-            <!-- </div> -->
         </div>
     </div>
     <!--Javascript-->

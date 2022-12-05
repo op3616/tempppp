@@ -9,18 +9,45 @@ const loanInterest = document.querySelector(".loan_interest_rate");
 
 const submitBtn = document.querySelector(".calculator-btn");
 
+loanAmount.addEventListener(
+  "keyup",
+  function (evt) {
+    this.name = this.value.replaceAll(".", "");
+    if (
+      this.value == "" ||
+      this.value == undefined ||
+      isNaN(parseInt(this.name)) == true
+    ) {
+      this.value = 0;
+      this.name = "0";
+    } else {
+      this.value = parseInt(this.name).toLocaleString();
+    }
+  },
+  false
+);
+
 submitBtn.addEventListener("click", function () {
   if (
     loanAmount.value == "" ||
-    loanTenure.validity.value == "" ||
-    loanRate.validity.value == ""
+    loanTenure.value == "" ||
+    loanRate.value == ""
   ) {
     alert("Vui lòng nhập đầy đủ thông tin");
     return;
   }
 
-  amount = Number(loanAmount.value);
-  tenure = loanTenure.value * 12; // 1Year = 12 months
+  if (
+    Number(loanAmount.value) == 0 ||
+    Number(loanTenure.value) == 0 ||
+    Number(loanRate.value) == 0
+  ) {
+    alert("Vui lòng nhập số khác 0");
+    return;
+  }
+
+  amount = localStringToNumber(loanAmount.value);
+  tenure = loanTenure.value;
   rate = loanRate.value / 100;
   interestResult = [];
   emiResult = [];
@@ -34,63 +61,22 @@ submitBtn.addEventListener("click", function () {
   interestTotal = interestResult.reduce((v, t) => v + t, 0);
   emiTotal = emiResult.reduce((v, t) => v + t, 0);
   emi = emiTotal / tenure;
+  interestMonthly = interestTotal / tenure;
   total = amount + interestTotal;
 
-  loanEmi.innerHTML = Math.floor(emi);
-  loanPrinciple.innerHTML = Math.floor(amount);
-  loanTotal.innerHTML = Math.floor(total);
-  loanInterest.innerHTML = Math.floor(interestTotal);
-
-  //Loanchart
-  let xValues = ["Principle", "Interest"];
-  let yValues = [amount, Math.floor(interestTotal)];
-
-  let barColors = ["#37989d", "#000000"];
-
-  new Chart("loanChart", {
-    type: "pie",
-    data: {
-      labels: xValues,
-      datasets: [
-        {
-          backgroundColor: barColors,
-          data: yValues,
-        },
-      ],
-    },
-    options: {
-      title: {
-        display: false,
-      },
-    },
-  });
-
-  // tableCreate(emiResult, interestResult, tenure);
+  loanEmi.innerHTML = convertToCurrency(Math.floor(emi));
+  loanPrinciple.innerHTML = convertToCurrency(Math.floor(amount));
+  loanTotal.innerHTML = convertToCurrency(Math.floor(total));
+  loanInterest.innerHTML = convertToCurrency(Math.floor(interestTotal));
 });
 
-// function tableCreate(emiResult, interestResult, tenure) {
-//   const body = document.querySelector(".emi-table"),
-//     tbl = document.createElement("table");
-//   tbl.style.width = "100px";
-//   tbl.style.border = "1px solid black";
+function convertToCurrency(amount) {
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(amount);
+}
 
-//   const header = tbl.createTHead();
-//   header.insertRow(4);
-
-//   for (let i = 0; i < tenure; i++) {
-//     const tr = tbl.insertRow();
-//     for (let j = 0; j < 4; j++) {
-//       if (i === 2 && j === 1) {
-//         break;
-//       } else {
-//         const td = tr.insertCell();
-//         td.appendChild(document.createTextNode(`Cell I${i}/J${j}`));
-//         td.style.border = "1px solid black";
-//         if (i === 1 && j === 1) {
-//           td.setAttribute("rowSpan", "2");
-//         }
-//       }
-//     }
-//   }
-//   body.appendChild(tbl);
-// }
+function localStringToNumber(s) {
+  return Number(String(s).replaceAll(".", ""));
+}

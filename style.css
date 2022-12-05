@@ -139,7 +139,7 @@ input[type=number]{
 }
 .calculator-result .loan_principle,
 .calculator-result .loan_interest_rate,
-.calculator-result .loan_total{
+.calculator-result .loan_total, .calculator-result .loan_interest_monthly{
     color: #333332;
     font-weight: 700;
     font-size: 22px;
@@ -147,64 +147,6 @@ input[type=number]{
 
 .calculator-result canvas{
     padding: 20px;
-}
-
-.container {
-  text-align: left;
-  overflow-y: scroll;
-  display: table;
-  width: 100%;
-  height: 100px;
-}
-
-.container td, .container th {
-  padding-bottom: 2%;
-  padding-top: 2%;
-  padding-left:2%;  
-}
-
-/* Background-color of the odd rows */
-.container tr:nth-child(odd) {
-    background-color: #96125110;
-}
-
-/* Background-color of the even rows */
-.container tr:nth-child(even) {
-    background-color: #c18fa710;
-}
-
-.container th {
-    background-color: #37989d;
-}
-
-.container td:first-child { color: #37989d; }
-
-.container tr:hover {
-   background-color: #464A52;
--webkit-box-shadow: 0 6px 6px -6px #0E1119;
-     -moz-box-shadow: 0 6px 6px -6px #0E1119;
-          box-shadow: 0 6px 6px -6px #0E1119;
-}
-
-.container td:hover {
-  background-color: #FFF842;
-  color: #403E10;
-  font-weight: bold;
-  
-  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
-  transform: translate3d(6px, -6px, 0);
-  
-  transition-delay: 0s;
-    transition-duration: 0.4s;
-    transition-property: all;
-  transition-timing-function: line;
-}
-
-.emi-table {
-    height: 300px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-top: 2rem;
 }
 
 @media (max-width: 800px) {
